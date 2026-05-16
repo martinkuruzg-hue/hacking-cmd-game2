@@ -15,6 +15,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	get_node("Label3").text = str(puntos)
 	if Input.is_action_just_pressed("ui_accept"):
+		
+		texto = str($LineEdit.text)
+		#Presionar boton fisico
 		cmd_base()
 	
 	if puntos <0:
@@ -22,6 +25,7 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
+	#Presionar boton virtual
 	cmd_base()
 func cmd_base():
 		if $LineEdit.text in lista_comandos and not $LineEdit.text in clear:
@@ -29,7 +33,7 @@ func cmd_base():
 			sumar_puntos()
 		elif $LineEdit.text in clear:
 			sumar_puntos()
-			vaciar_cmd()
+			vaciar_cmd("")
 		else:
 			restar_puntos()
 			input_invalido()
@@ -42,9 +46,9 @@ func vaciar_input():
 	$LineEdit.text = ""
 func llenar_cmd():
 	$Label.text =str($Label.text) + "\n" +str($LineEdit.text)
-func vaciar_cmd():
-	get_node("Label").text = ""
-	veces = 0
+func vaciar_cmd(a):
+		get_node("Label").text = ""+a
+		veces = 0
 func input_invalido():
 	$Label.text =str($Label.text) + "\n"+"'" +str($LineEdit.text)+"' command is invalid"
 func _on_label_resized() -> void:
@@ -53,5 +57,11 @@ func _on_label_resized() -> void:
 		veces = veces + 1
 		print(veces)
 	else:
+		validar_comando()
 		veces = 0
-		get_node("Label").text =""
+		
+func validar_comando():
+	if texto in lista_comandos:
+		vaciar_cmd(texto)
+	else:
+		vaciar_cmd("'"+texto+"' command is invalid")
