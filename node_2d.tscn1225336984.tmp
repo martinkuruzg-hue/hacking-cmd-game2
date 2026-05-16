@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://jvwhgsfa3wdf"]
+
+[ext_resource type="Script" uid="uid://cdahkux5sg7i5" path="res://node_2d.gd" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://dx71e2ufuvkv6" path="res://icon.svg" id="2_0e48y"]
+[ext_resource type="FontFile" uid="uid://dgialou6km7ff" path="res://FiraCode-VariableFont_wght.ttf" id="3_epypp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_epypp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
+font = ExtResource("3_epypp")
+font_size = 26
+
+[node name="Node2D" type="Node2D" unique_id=868183183]
+script = ExtResource("1_wtcfe")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1410760503]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(483.5, 286.49997)
+scale = Vector2(10.429688, 6.804688)
+texture = ExtResource("2_0e48y")
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1731311157]
+offset_left = 25.0
+offset_top = 575.0
+offset_right = 805.0
+offset_bottom = 606.0
+
+[node name="Label" type="Label" parent="." unique_id=2070280296]
+offset_left = 26.0
+offset_top = 21.0
+offset_right = 875.0
+offset_bottom = 73.0
+label_settings = SubResource("LabelSettings_epypp")
+
+[node name="Button" type="Button" parent="." unique_id=1403578632]
+offset_left = 832.0
+offset_top = 574.0
+offset_right = 882.0
+offset_bottom = 605.0
+text = "enter"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1971060184]
+position = Vector2(485, 304)
+
+[node name="Label2" type="Label" parent="." unique_id=455092556]
+offset_left = 3.0
+offset_top = 574.0
+offset_right = 35.0
+offset_bottom = 604.0
+text = "$"
+label_settings = SubResource("LabelSettings_0hol4")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
