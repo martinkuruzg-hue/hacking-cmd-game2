@@ -59,9 +59,9 @@ label_settings = SubResource("LabelSettings_0hol4")
 
 [node name="Label3" type="Label" parent="." unique_id=1628337877]
 offset_left = 847.0
-offset_top = -21.0
+offset_top = 12.0
 offset_right = 1022.0
-offset_bottom = 84.0
+offset_bottom = 117.0
 label_settings = SubResource("LabelSettings_q6r6c")
 
 [connection signal="resized" from="Label" to="." method="_on_label_resized"]

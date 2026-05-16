@@ -2,14 +2,13 @@ extends Node2D
 
 var texto : String
 var veces :int
-var lista_comandos = ['cd','cd .']
+var lista_comandos = ['cd','cd .','cd ~']
 var clear = ["clear", "cls"]
 var puntos: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,7 +21,6 @@ func _process(delta: float) -> void:
 	
 	if puntos <0:
 		puntos = 0
-
 
 func _on_button_pressed() -> void:
 	#Presionar boton virtual
@@ -59,7 +57,6 @@ func _on_label_resized() -> void:
 	else:
 		validar_comando()
 		veces = 0
-		
 func validar_comando():
 	if texto in lista_comandos:
 		vaciar_cmd(texto)
