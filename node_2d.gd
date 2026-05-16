@@ -29,12 +29,10 @@ func cmd_base():
 			sumar_puntos()
 		elif $LineEdit.text in clear:
 			sumar_puntos()
-			
 			vaciar_cmd()
 		else:
 			restar_puntos()
 			input_invalido()
-		#llenar_cmd()
 		vaciar_input()
 func sumar_puntos():
 	puntos = puntos +1
