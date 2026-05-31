@@ -39,7 +39,7 @@ offset_right = 875.0
 offset_bottom = 73.0
 label_settings = SubResource("LabelSettings_epypp")
 
-[node name="Button" type="Button" parent="." unique_id=1403578632]
+[node name="Enter" type="Button" parent="." unique_id=1403578632]
 offset_left = 832.0
 offset_top = 574.0
 offset_right = 882.0
@@ -59,10 +59,10 @@ label_settings = SubResource("LabelSettings_0hol4")
 
 [node name="Label3" type="Label" parent="." unique_id=1628337877]
 offset_left = 847.0
-offset_top = 12.0
+offset_top = -21.0
 offset_right = 1022.0
-offset_bottom = 117.0
+offset_bottom = 84.0
 label_settings = SubResource("LabelSettings_q6r6c")
 
 [connection signal="resized" from="Label" to="." method="_on_label_resized"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Enter" to="." method="_on_button_pressed"]
