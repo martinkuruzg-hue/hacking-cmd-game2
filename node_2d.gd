@@ -1,21 +1,25 @@
 extends Node2D
-
+#Declarar la variable de input
+# para entedimiento humano
+@onready var input = $LineEdit
 var texto : String
 var veces :int
+var enrutamiento : String
 #lista para comandos CORRECTOS que SUMAN PUNTOS
-var lista_comandos = ['cd','cd .']
+var lista_comandos = ['cd','cd .','cd ~']
  #COMANDOS para CERRAR TERMINAL
 var clear = ["clear", "cls"]
 #VARIABLE PUNTOS (cuando se utilizan "lista_comandos" AUMENTA)
 var puntos: int
-
+# input = input
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	#LABEL DE PUNTOS (Indicador de puntaje en PANTALLA)
 	get_node("Label3").text = str(puntos)
 	if Input.is_action_just_pressed("ui_accept"):
@@ -32,14 +36,14 @@ func _on_button_pressed() -> void:
 func cmd_base():
 		#SI EL COMANDO DE LA ENTRADA DE TEXTO
 		#ESTA EN LA LISTA DE COMANDOS CORRECTOS
-		if $LineEdit.text in lista_comandos and not $LineEdit.text in clear:
+		if input.text in lista_comandos and not input.text in clear:
 			#ENVIA EL COMANDO ESCRITO AL TERMINAL
 			llenar_cmd()
 			#SUMA PUNTOS (deberia variar segun dificultad de comando)
 			sumar_puntos()
 			
 		#SI es un comando para CERRAR TERMINAL
-		elif $LineEdit.text in clear:
+		elif input.text in clear:
 			#SUMA PUNTOS (deberia ser 1)
 			sumar_puntos()
 			#VACIA TERMINAL
@@ -64,10 +68,10 @@ func restar_puntos():
 	puntos = puntos -1
 #FUNCION para VACIAR LA ENTRADA DE TEXTO
 func vaciar_input():
-	$LineEdit.text = ""
+	input.text = ""
 #ENVIA el texto del INPUT al TERMINAL
 func llenar_cmd():
-	$Label.text =str($Label.text) + "\n" +str($LineEdit.text)
+	$Label.text =str($Label.text) + "\n" +str(input.text)
 #VACIA TERMINAL cuando se LLENA
 func vaciar_cmd():
 	get_node("Label").text = ""
@@ -75,7 +79,7 @@ func vaciar_cmd():
 #CONCATENA mensaje de error , con comando fuera 
 # de lista_comandos
 func input_invalido():
-	$Label.text =str($Label.text) + "\n"+"'" +str($LineEdit.text)+"' command is invalid"
+	$Label.text =str($Label.text) + "\n"+ enrutamiento +"'" +str(input.text)+"' command is invalid"
 #REINICIA TERMINAL CUANDO SE LLENA
 func _on_label_resized() -> void:
 	#TERMINAL acepta MAXIMO 18 FILAS
