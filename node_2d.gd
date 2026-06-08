@@ -3,12 +3,17 @@ extends Node2D
 var texto : String
 var veces :int
 #lista para comandos CORRECTOS que SUMAN PUNTOS
-#var lista_comandos = ['cd','cd .','cd ..','cd ~','cp','ls','mkdir']
-var lista_comandos = {'cd':1,'cd .':2,'cd ..':3,'cd ~':4,'cp':5,'ls':6}
+var lista_comandos = {'cd':1,'cd .':2,'cd ..':3,'cd ~':4,'cp':5,'rm':5,
+'ls':6, 'mkdir':7,'pwd':8,'touch':9}
  #COMANDOS para CERRAR TERMINAL
 var clear = {"clear":1, "cls":1}
 #VARIABLE PUNTOS (cuando se utilizan "lista_comandos" AUMENTA)
 var puntos: int
+#Variable ficheros 
+
+var fichero = "~\\home>"
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +22,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	#LABEL DE PUNTOS (Indicador de puntaje en PANTALLA)
 	get_node("Label3").text = str(puntos)
 	if Input.is_action_just_pressed("ui_accept"):
@@ -71,7 +77,7 @@ func vaciar_input():
 	$LineEdit.text = ""
 #ENVIA el texto del INPUT al TERMINAL
 func llenar_cmd():
-	$Label.text =str($Label.text) + "\n" +str($LineEdit.text)
+	$Label.text =str($Label.text) +"\n"+fichero+" " +str($LineEdit.text)
 #VACIA TERMINAL cuando se LLENA
 func vaciar_cmd():
 	get_node("Label").text = ""
@@ -79,7 +85,7 @@ func vaciar_cmd():
 #CONCATENA mensaje de error , con comando fuera 
 # de lista_comandos
 func input_invalido():
-	$Label.text =str($Label.text) + "\n"+"'" +str($LineEdit.text)+"' command is invalid"
+	$Label.text =str($Label.text) + "\n"+fichero+" '" +str($LineEdit.text)+"' command is invalid"
 #REINICIA TERMINAL CUANDO SE LLENA
 func _on_label_resized() -> void:
 	#TERMINAL acepta MAXIMO 18 FILAS
@@ -91,4 +97,4 @@ func _on_label_resized() -> void:
 		#REINICIA RECUENTO A 0
 		veces = 0
 		#LIMPIA TERMINAL
-		get_node("Label").text =""
+		get_node("Label").text =fichero
