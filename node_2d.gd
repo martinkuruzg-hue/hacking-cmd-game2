@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var texto : String
 var veces :int
 #lista para comandos CORRECTOS que SUMAN PUNTOS
@@ -30,6 +31,7 @@ func _process(delta: float) -> void:
 	
 	if puntos <0:
 		puntos = 0
+
 
 #BOTÓN ENTER (Para Celular)
 func _on_button_pressed() -> void:
@@ -65,10 +67,10 @@ func cmd_base():
 		# ESCRIBIR OTRO COMANDO
 		vaciar_input()
 #SUMA con LISTA_COMANDOS (COMANDOS CORRECTOS)
-func sumar_puntos(a,b):
+func sumar_puntos(diccionario,comando):
 	#A futuro que cambie la suma segun dificultad
-	puntos += a[b]
-	print(a[b])
+	puntos += diccionario[comando]
+	print(diccionario[comando])
 #RESTA con COMANDOS INCORRECTOS (-1 punto siempre)
 func restar_puntos():
 	puntos = puntos -1
