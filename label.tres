@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dmkcv0obimhwh"]
+
+[ext_resource type="FontFile" uid="uid://dgialou6km7ff" path="res://FiraCode-VariableFont_wght.ttf" id="1_elqs5"]
+
+[resource]
+font = ExtResource("1_elqs5")
+font_size = 26

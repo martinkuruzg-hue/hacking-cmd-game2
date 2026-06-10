@@ -51,8 +51,6 @@ offset_top = 572.0
 offset_right = 86.0
 offset_bottom = 607.0
 label_settings = ExtResource("3_epypp")
-vertical_alignment = 2
-autowrap_mode = 1
 
 [node name="Label2" type="Label" parent="." unique_id=455092556]
 offset_left = 130.0

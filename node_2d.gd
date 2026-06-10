@@ -1,5 +1,6 @@
 extends Node2D
 
+#@onready var input = $LineEdit.text
 
 var texto : String
 var veces :int
@@ -14,15 +15,15 @@ var puntos: int
 var lista_carpetas = ["home"]
 
 var fichero = "~\\home>"
-var fichero2 = "~\\"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$Fichero_actual.text = fichero
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	#LABEL DE PUNTOS (Indicador de puntaje en PANTALLA)
 	get_node("Label3").text = str(puntos)
 	if Input.is_action_just_pressed("ui_accept"):
@@ -37,17 +38,24 @@ func _on_button_pressed() -> void:
 	cmd_base()
 #FUNCION BASE (Reutilizable para Enter)
 func cmd_base():
+		
 		var input = $LineEdit.text
 		#SI EL COMANDO DE LA ENTRADA DE TEXTO
 		#ESTA EN LA LISTA DE COMANDOS CORRECTOS
 		
 		if input in lista_comandos and not input in clear:
 			#ENVIA EL COMANDO ESCRITO AL TERMINAL
-			llenar_cmd()
+			
 			if lista_comandos[input] ==3:
 				salir_carpeta(input)
-			#SUMA PUNTOS (deberia variar segun dificultad de comando)
-			#sumar_puntos()
+				llenar_cmd()
+			elif lista_comandos[input] ==4:
+				fichero = "~\\home>"
+				lista_carpetas = ["home"]
+				llenar_cmd()
+				
+
+			#SUMA PUNTOS cambia por dificultad
 			sumar_puntos(lista_comandos,input)
 			
 		#SI es un comando para CERRAR TERMINAL
@@ -65,7 +73,7 @@ func cmd_base():
 			llenar_cmd()
 		#SI es COMANDO INCORRECTO X
 		else:
-			comando_cd(lista_comandos,input)
+			
 			#RESTA 1 PUNTO
 			restar_puntos()
 			#ACTIVA FUNCION DE COMANDO INCORRECTO Y
@@ -74,7 +82,9 @@ func cmd_base():
 		
 		#SE VACIA/LIMPIA LA ENTRADA PARA
 		# ESCRIBIR OTRO COMANDO
+		
 		vaciar_input()
+		$Fichero_actual.text = fichero
 #SUMA con LISTA_COMANDOS (COMANDOS CORRECTOS)
 func sumar_puntos(diccionario,comando):
 	#Suma puntos segun dificultad
@@ -129,8 +139,9 @@ func comando_cd(diccionario,comando):
 		fichero = fichero_temporal + ">"
 		
 func salir_carpeta(input):
-	#VALIDACION con un CONTAINS
+	#SI Tamaño de la lista es mayor a 1
 	if lista_carpetas.size()>1:
+		#(Para que no se borre el home)
 		var carpeta = input.get_slice("cd .", 1)
 		
 		#Pone la BASE de FICHERO
