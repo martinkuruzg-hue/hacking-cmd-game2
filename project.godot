@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="hacking"
-run/main_scene="res://node_2d.tscn"
+run/main_scene="uid://btu5o88hy7003"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -7,25 +7,33 @@ var veces :int
 #lista para comandos CORRECTOS que SUMAN PUNTOS
 var lista_comandos = {'cd':1,'cd .':2,'cd ..':3,'cd ~':4,'cp':5,'rm':5,
 'ls':6, 'mkdir':7,'pwd':8,'touch':9}
+
+
  #COMANDOS para CERRAR TERMINAL
 var clear = {"clear":1, "cls":1}
 #VARIABLE PUNTOS (cuando se utilizan "lista_comandos" AUMENTA)
 var puntos: int
 #Variable ficheros 
 var lista_carpetas = ["home"]
-
+var jerarquia_carpetas = {"home":0 , "Documents":1, "Desktop":1, "Download":1, "a":2,"e":3}
 var fichero = "~\\home>"
 
-
 # Called when the node enters the scene tree for the first time.
+#Se llama función una vez 
 func _ready() -> void:
 	$Fichero_actual.text = fichero
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+#Funcion principal se llama frecuentemente
 func _process(delta: float) -> void:
 	#LABEL DE PUNTOS (Indicador de puntaje en PANTALLA)
 	get_node("Label3").text = str(puntos)
+	
+	#Cuando se presiona enter se ejecuta la funcion base
+	
+	#ENTER
 	if Input.is_action_just_pressed("ui_accept"):
 		cmd_base()
 	
@@ -36,6 +44,7 @@ func _process(delta: float) -> void:
 func _on_button_pressed() -> void:
 	#Ejecuta funcion base del juego
 	cmd_base()
+	
 #FUNCION BASE (Reutilizable para Enter)
 func cmd_base():
 		
@@ -53,7 +62,8 @@ func cmd_base():
 				fichero = "~\\home>"
 				lista_carpetas = ["home"]
 				llenar_cmd()
-				
+			else:
+				llenar_cmd()
 
 			#SUMA PUNTOS cambia por dificultad
 			sumar_puntos(lista_comandos,input)
@@ -123,9 +133,9 @@ func _on_label_resized() -> void:
 # Valida si el comando uso "CD ." para CAMBIAR de CARPETA
 func comando_cd(diccionario,comando):
 	#VALIDACION con un CONTAINS
-	if comando.contains("cd .") and comando.get_slice("cd .", 1) :
+	if comando.contains("cd .") and comando.get_slice("cd .", 1) and comando.get_slice("cd .", 1) in jerarquia_carpetas  :
 		#Pone la BASE de FICHERO
-		var fichero_temporal = "~\\"
+		var fichero_temporal = "~"
 		
 		#DEVUELVE el TEXTO luego del "CD ."
 		var carpeta = comando.get_slice("cd .", 1)
@@ -137,7 +147,8 @@ func comando_cd(diccionario,comando):
 			fichero_temporal = fichero_temporal +"\\"+ i
 		#CREA DENUEVO EL FICHERO
 		fichero = fichero_temporal + ">"
-		
+	else:
+		print("no está")
 func salir_carpeta(input):
 	#SI Tamaño de la lista es mayor a 1
 	if lista_carpetas.size()>1:
@@ -145,7 +156,7 @@ func salir_carpeta(input):
 		var carpeta = input.get_slice("cd .", 1)
 		
 		#Pone la BASE de FICHERO
-		var fichero_temporal = "~\\"
+		var fichero_temporal = "~"
 		
 		#AÑADE otra CARPETA a la LISTA
 		lista_carpetas.remove_at(lista_carpetas.size() -1)
@@ -154,4 +165,3 @@ func salir_carpeta(input):
 			fichero_temporal = fichero_temporal +"\\"+ i
 		#CREA DENUEVO EL FICHERO
 		fichero = fichero_temporal + ">"
-		

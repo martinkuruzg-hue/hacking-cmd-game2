@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://btu5o88hy7003"]
+
+[ext_resource type="Script" uid="uid://bgo7uwl0ap2bq" path="res://titulo.gd" id="1_gwakh"]
+[ext_resource type="Texture2D" uid="uid://dx71e2ufuvkv6" path="res://icon.svg" id="1_gxgwo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gwakh"]
+line_spacing = 3.125
+font_size = 92
+
+[node name="Node2D" type="Node2D" unique_id=1550900695]
+script = ExtResource("1_gwakh")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=563718499]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(422.50006, -12.999985)
+scale = Vector2(12.164063, 8.84375)
+texture = ExtResource("1_gxgwo")
+
+[node name="Label" type="Label" parent="." unique_id=1888086496]
+offset_left = 254.0
+offset_top = -14.0
+offset_right = 517.0
+offset_bottom = 112.0
+text = "CM2D"
+label_settings = SubResource("LabelSettings_gwakh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=970240738]
+position = Vector2(349, 97)
+
+[node name="Dificil" type="Button" parent="." unique_id=194523781]
+offset_left = 343.0
+offset_top = 241.0
+offset_right = 451.0
+offset_bottom = 297.0
+text = "Dificil"
+
+[node name="Facil" type="Button" parent="." unique_id=303859203]
+offset_left = 331.0
+offset_top = 122.0
+offset_right = 460.0
+offset_bottom = 181.0
+text = "Facil"
+
+[connection signal="pressed" from="Dificil" to="." method="_on_dificil_pressed"]
+[connection signal="pressed" from="Facil" to="." method="_on_facil_pressed"]
