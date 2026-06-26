@@ -17,3 +17,7 @@ func _on_dificil_pressed() -> void:
 
 func _on_facil_pressed() -> void:
 	get_tree().change_scene_to_file("res://facil.tscn")
+
+
+func _on_titulo_resized() -> void:
+	pass # Replace with function body.

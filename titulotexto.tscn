@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bu0ynga5a14ih"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gwakh"]
+line_spacing = 3.125
+font_size = 92
+
+[node name="Titulo" type="Label" unique_id=1900817020]
+offset_left = 254.0
+offset_top = -14.0
+offset_right = 517.0
+offset_bottom = 112.0
+text = "CM2D"
+label_settings = SubResource("LabelSettings_gwakh")

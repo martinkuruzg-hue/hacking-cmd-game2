@@ -13,6 +13,13 @@ font = SubResource("FontVariation_epypp")
 font_size = 32
 font_color = Color(0, 0.41071948, 0.10368834, 1)
 
+[sub_resource type="FontVariation" id="FontVariation_m448g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qur1y"]
+font = SubResource("FontVariation_m448g")
+font_size = 32
+font_color = Color(0, 0.41071948, 0.10368834, 1)
+
 [node name="Node2D" type="Node2D" unique_id=383094066]
 script = ExtResource("1_m448g")
 
@@ -50,17 +57,17 @@ offset_bottom = 132.0
 label_settings = SubResource("LabelSettings_cf7v2")
 
 [node name="Button2" type="Button" parent="." unique_id=560863673]
-offset_left = 431.0
-offset_top = 503.0
-offset_right = 610.0
-offset_bottom = 567.0
+offset_left = 315.0
+offset_top = 505.0
+offset_right = 494.0
+offset_bottom = 569.0
 text = "."
 
 [node name="Button3" type="Button" parent="." unique_id=1740733624]
-offset_left = 823.0
-offset_top = 501.0
-offset_right = 1002.0
-offset_bottom = 565.0
+offset_left = 805.0
+offset_top = 503.0
+offset_right = 984.0
+offset_bottom = 567.0
 text = "."
 
 [node name="Button1" type="Button" parent="." unique_id=1996003570]
@@ -70,6 +77,21 @@ offset_right = 216.0
 offset_bottom = 570.0
 text = "."
 
+[node name="Button4" type="Button" parent="." unique_id=158540700]
+offset_left = 562.0
+offset_top = 502.0
+offset_right = 748.0
+offset_bottom = 567.0
+text = "."
+
+[node name="Label3" type="Label" parent="." unique_id=1986986010]
+offset_left = 847.0
+offset_top = 3.0
+offset_right = 1022.0
+offset_bottom = 132.0
+label_settings = SubResource("LabelSettings_qur1y")
+
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
